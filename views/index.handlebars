@@ -1,0 +1,81 @@
+{{!-- make a submit button --}}
+<div class="conatiner-fluid">
+  <h1>BURGERS!</h1>
+</div>
+<div class="col-md-6">
+  <div class="row">
+    <div class="col-6">
+      <div class="justify-content-center">
+        <h2>BURGERS that are not devoured!</h2>
+        <ul>
+          {{#each burgers}}
+          {{#unless devoured}}
+          {{> burgers devoured=false}}
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="justify-content-center">
+        <h2>BURGERS that ARE devoured!</h2>
+        <ul>
+          {{#each burgers}}
+          {{#if devoured}}
+          {{> burgers devoured=true}}
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<h2>Add a Burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="recipe">Burger Name:</label>
+    <input type="text" id="recipe" name="name">
+  </div>
+
+  <button type="submit">Add Recipe</button>
+</form>
+<script>
+  $(function () {
+    $(".change-state").on("click", function (event) {
+        var id = $(this).data("id");
+        var newState = $(this).data("newstate");
+        var cookedState = {
+            devoured: newState
+        };
+        console.log(cookedState)
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: cookedState
+        }).then(
+            function () {
+                console.log("changed cooked to", cookedState);
+                location.reload();
+            }
+        );
+    });
+
+    $(".create-form").on("submit", function (event) {
+        event.preventDefault();
+        var newRecipe = {
+            name: $("#recipe").val().trim(),
+        };
+        $.ajax("/api/burgers", {
+            type: "POST",
+            data: newRecipe
+        }).then(
+            function () {
+                console.log("created new burger");
+                location.reload();
+            }
+        );
+    });
+});
+</script>

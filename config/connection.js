@@ -1,0 +1,21 @@
+// Set up MySQL connection  dotenv protection is used with DB info. (may not deploy!)
+var mysql = require("mysql");
+require("dotenv").config();
+var connection = mysql.createConnection({
+  host: process.env.DB_host,
+  port: process.env.DB_port,
+  user: process.env.DB_user,
+  password: process.env.DB_password,
+  database: process.env.DB_database
+});
+
+connection.connect(function (err) {
+  if (err) {
+    console.error("ERROR CONNECTING!:\n " + err.stack);
+    return;
+  }
+  console.log("Grill id: " + connection.threadId);
+});
+
+// export connection 
+module.exports = connection;
