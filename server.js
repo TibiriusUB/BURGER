@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // how to add resources to your HTML. Stack Overflow for the win!
 app.use( express.static( "public" ) );
-app.use("/images", express.static(__dirname + "./assets/img"));
+//app.use("/images", express.static(__dirname + "./assets/img"));
 
 var exphbs = require("express-handlebars");
 
