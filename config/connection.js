@@ -13,11 +13,11 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
-  host: process.env.DB_host,
-  port: process.env.DB_port,
-  user: process.env.DB_user,
-  password: process.env.DB_password,
-  database: process.env.DB_database
+  host:localhost,
+  port:3306,
+  user:root,
+  password:root,
+  database:burgers_db
   });
 };
   connection.connect(function (err) {
