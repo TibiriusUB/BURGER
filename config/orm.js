@@ -5,6 +5,7 @@ var orm = {
         var querystring = "SELECT * FROM ?? ";
         connection.query(querystring, [table], function (err, result) {
             if (err) throw err;
+            //console.log(result)
             cb(result);
         });
     },
@@ -13,14 +14,16 @@ var orm = {
         var querystring = "INSERT INTO ?? (burger_name,devoured) VALUES(?,?)";
         connection.query(querystring, [table, burger_name, devoured], function (err, result) {
             if (err) throw err;
+            //console.log(result)
             cb(result);
         });
     },
     updateOne: function (table, devoured, burger_id, cb) {
-        console.log("UPDATE "+table+" SET devoured = "+devoured+" WHERE id = "+ burger_id)
+       // console.log("UPDATE "+table+" SET devoured = "+devoured+" WHERE id = "+ burger_id)
         var querystring = "UPDATE ?? SET devoured = ? WHERE id = ?";
         connection.query(querystring, [table, devoured, burger_id], function (err, result) {
             if (err) throw err;
+            //console.log(result)
             cb(result);
         });
     }

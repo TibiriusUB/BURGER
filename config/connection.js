@@ -30,3 +30,4 @@ if (process.env.JAWSDB_URL) {
 
   // export connection 
   module.exports = connection;
+  //https://vast-tor-57586.herokuapp.com/ | https://git.heroku.com/vast-tor-57586.git

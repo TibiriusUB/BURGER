@@ -23,7 +23,6 @@ router.post("/api/burgers", function (req, res) {
 router.put("/api/burgers/eat", function (req, res) {
   let id = req.body.id;
   var newState = req.body.devoured
-  console.log("send check "+newState + id)
   burger.eat(newState, id, function (result) {
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
