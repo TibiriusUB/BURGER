@@ -1,17 +1,23 @@
 // Set up MySQL connection  dotenv protection is used with DB info. (may not deploy!)
 var mysql = require("mysql");
-//require("dotenv").config();
+require("dotenv").config();
 
-var connection;
+// var connection = mysql.createConnection({
+//   host: process.env.DB_host,
+//   port: process.env.DB_port,
+//   user: process.env.DB_user,
+//   password: process.env.DB_password,
+//   database: process.env.DB_database
+// });
 if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
-    DB_host=localhost,
-    host: localhost,
-    user: root,
-    password: root,
-    database: burgers_db
+  host: process.env.DB_host,
+  port: process.env.DB_port,
+  user: process.env.DB_user,
+  password: process.env.DB_password,
+  database: process.env.DB_database
   });
 };
   connection.connect(function (err) {

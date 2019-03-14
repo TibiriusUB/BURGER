@@ -17,7 +17,8 @@ var orm = {
         });
     },
     updateOne: function (table, devoured, burger_id, cb) {
-        var querystring = "UPDATE ?? SET devoured = ? WHERE id = ??";
+        console.log("UPDATE "+table+" SET devoured = "+devoured+" WHERE id = "+ burger_id)
+        var querystring = "UPDATE ?? SET devoured = ? WHERE id = ?";
         connection.query(querystring, [table, devoured, burger_id], function (err, result) {
             if (err) throw err;
             cb(result);
@@ -28,4 +29,5 @@ var orm = {
 module.exports = orm;
 //console.log(orm.selectAll("burgers",function(res){return res}))
 //orm.insertOne("burgers","matahorn",function(res){console.log(res)});
+
 
